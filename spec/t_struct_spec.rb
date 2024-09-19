@@ -4,25 +4,36 @@ require 'sorbet-runtime'
 
 describe TypeCoerce do
   context "Uses key specified in `name` arg when building structs" do
-    class Wish < T::Struct
-      const :wish_number, Integer, name: "Num"
+    class Song < T::Struct
+      const :id, Integer, name: "songId"
+      const :name, String, name: "songName"
+      const :artist, String, default: "Unknown", name: "songArtist"
     end
 
-    class Genie < T::Struct
-      const :name, String, name: "NAME"
-      const :wishes, T::Array[Wish], name: "Wishes"
+    class Customer < T::Struct
+      const :id, Integer, name: "customerId"
+      const :name, String, name: "customerName"
+      const :favourite_movies, T::Array[String], default: [], name: "customerFavouriteMovies"
+      const :favourite_songs, T::Array[Song], default: [], name: "customerFavouriteSongs"
     end
 
     it "Works" do
-      converted = TypeCoerce[Genie].new.from({
-        "NAME" => "Craig",
-        "Wishes" => [
-          "Num" => "500"
-        ]
+      converted = TypeCoerce[Customer].new.from({
+        "customerId" => "1",
+        "customerName" => "Craig",
+        "favourite_songs" => [{
+          "songId" => "1",
+          "songName" => "One More Time",
+          "artist" => "Daft Punk"
+        }]
       })
 
+      expect(converted.id).to eql(1)
       expect(converted.name).to eql("Craig")
-      expect(converted.wishes.map(&:wish_number)).to eql([500])
+      expect(converted.favourite_movies).to eql([])
+      expect(converted.favourite_songs.map(&:id)).to eql([1])
+      expect(converted.favourite_songs.map(&:name)).to eql(["One More Time"])
+      expect(converted.favourite_songs.map(&:artist)).to eql(["Daft Punk"])
     end
   end
 end
