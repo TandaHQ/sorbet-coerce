@@ -1,5 +1,6 @@
 # typed: strict
-require "byebug"
+
+require "debug"
 require "simplecov"
 require "simplecov-cobertura"
 

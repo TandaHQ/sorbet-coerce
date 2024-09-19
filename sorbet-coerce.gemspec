@@ -20,5 +20,5 @@ Gem::Specification.new do |s|
 
   s.add_development_dependency 'sorbet', '>= 0.4.4704'
   s.add_development_dependency 'rspec', '~> 3.8', '>= 3.8'
-  s.add_development_dependency 'byebug', '~>11.0.1', '>=11.0.1'
+  s.add_development_dependency 'debug', '>= 1.9.2'
 end

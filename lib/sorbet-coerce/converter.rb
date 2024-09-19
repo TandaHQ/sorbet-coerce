@@ -181,14 +181,19 @@ class TypeCoerce::Converter
     end
 
     props = type.props
-    args.map { |name, value|
-      key = name.to_sym
-      [
-        key,
-        (!props.include?(key) || value.nil?) ?
-          nil : _convert(value, props[key][:type], raise_coercion_error, coerce_empty_to_nil),
-      ]
-    }.to_h.slice(*props.keys)
+    names_to_prop_keys = props.each_with_object({}) do |(k, v), h|
+      if (name = v[:name])
+        h[name] = k
+      end
+    end
+
+    args.each_with_object({}) do |(name, value), h|
+      key = names_to_prop_keys.fetch(name) { name.to_sym }
+
+      if props.include?(key)
+        h[key] = value.nil? ? nil : _convert(value, props[key][:type], raise_coercion_error, coerce_empty_to_nil)
+      end
+    end
   end
 
   def _nil_like?(value, type, coerce_empty_to_nil)
