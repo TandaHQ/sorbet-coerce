@@ -2417,80 +2417,6 @@ module Bundler
   def self.unbundled_system(*args); end
 end
 
-module Byebug
-  PORT = ::T.let(nil, ::T.untyped)
-end
-
-class Byebug::AutoirbSetting
-  DEFAULT = ::T.let(nil, ::T.untyped)
-end
-
-class Byebug::AutolistSetting
-  DEFAULT = ::T.let(nil, ::T.untyped)
-end
-
-class Byebug::AutoprySetting
-  DEFAULT = ::T.let(nil, ::T.untyped)
-end
-
-class Byebug::AutosaveSetting
-  DEFAULT = ::T.let(nil, ::T.untyped)
-end
-
-class Byebug::CallstyleSetting
-  DEFAULT = ::T.let(nil, ::T.untyped)
-end
-
-class Byebug::Command
-  extend ::Byebug::Helpers::StringHelper
-end
-
-class Byebug::Context
-  extend ::Byebug::Helpers::PathHelper
-end
-
-class Byebug::FullpathSetting
-  DEFAULT = ::T.let(nil, ::T.untyped)
-end
-
-class Byebug::HistfileSetting
-  DEFAULT = ::T.let(nil, ::T.untyped)
-end
-
-class Byebug::HistsizeSetting
-  DEFAULT = ::T.let(nil, ::T.untyped)
-end
-
-class Byebug::ListsizeSetting
-  DEFAULT = ::T.let(nil, ::T.untyped)
-end
-
-class Byebug::LocalInterface
-  EOF_ALIAS = ::T.let(nil, ::T.untyped)
-end
-
-class Byebug::Printers::Base
-  SEPARATOR = ::T.let(nil, ::T.untyped)
-end
-
-class Byebug::SavefileSetting
-  DEFAULT = ::T.let(nil, ::T.untyped)
-end
-
-class Byebug::Setting
-  DEFAULT = ::T.let(nil, ::T.untyped)
-end
-
-class Byebug::ThreadsTable
-end
-
-class Byebug::ThreadsTable
-end
-
-class Byebug::WidthSetting
-  DEFAULT = ::T.let(nil, ::T.untyped)
-end
-
 module CGI::HtmlExtension
   def a(href=T.unsafe(nil)); end
 
@@ -6296,4 +6222,3 @@ end
 module Warning
   extend ::Warning
 end
-
